@@ -56,3 +56,6 @@ app.MapControllers();
 app.MapHealthChecks("/health");
 
 await app.RunAsync();
+
+// TODO: Добавить обработку ошибок и логгирование
+// TODO: Добавить воркер
