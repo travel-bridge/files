@@ -1,0 +1,83 @@
+version: '3'
+
+services: 
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.1
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.0.1
+    container_name: kafka
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    container_name: kafdrop
+    depends_on:
+      - kafka
+    ports:
+      - 9000:9000
+    environment:
+      KAFKA_BROKERCONNECT: kafka:29092
+
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack
+    ports: 
+      - '4566-4583:4566-4583'
+    environment: 
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: access-key
+      AWS_SECRET_ACCESS_KEY: secret-access-key
+      EDGE_PORT: 4566
+      SERVICES: s3
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  auth-migrator:
+    image: local/auth_migrator:latest
+    container_name: auth-migrator
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__AuthDatabase: User ID=postgres;Password=postgres;Host=postgres;Port=5432;Database=auth-database;
+
+  auth-services:
+    image: local/auth_services:latest
+    container_name: auth-services
+    depends_on:
+      - auth-migrator
+    ports:
+      - 8010:80
+    environment:
+      ConnectionStrings__AuthDatabase: User ID=postgres;Password=postgres;Host=postgres;Port=5432;Database=auth-database;
+      Events__BootstrapServers: 127.0.0.1:9092
+      ASPNETCORE_ENVIRONMENT: Development
