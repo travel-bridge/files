@@ -1,0 +1,15 @@
+.dockerignore
+.env
+.git
+.github
+.dependabot
+.gitignore
+.vs
+.vscode
+.idea
+docker-compose.yml
+docker-compose.*.yml
+Dockerfile
+Makefile
+**/bin
+**/obj
