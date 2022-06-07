@@ -1,5 +1,5 @@
 namespace Files.Application.Resources;
 
-public class ExcursionResource
+public class FileResource
 {
 }

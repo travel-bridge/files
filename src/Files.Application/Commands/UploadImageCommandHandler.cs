@@ -23,7 +23,7 @@ public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Upl
         var originalImage = Image.CreateOriginal(command.Name, command.ContentType, command.Content);
         await _imageRepository.UploadAsync(originalImage, cancellationToken);
         await _eventProducer.ProduceAsync(
-            new ResizeImageIntegrationEvent(originalImage.Id.BucketName, originalImage.Id.Key),
+            new ResizeImageIntegrationEvent(originalImage.GetGroupId()),
             cancellationToken);
         
         return new UploadImageResponse { GroupId = originalImage.GetGroupId() };
