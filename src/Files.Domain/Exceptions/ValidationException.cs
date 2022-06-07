@@ -3,7 +3,7 @@ namespace Files.Domain.Exceptions;
 public class ValidationException : ExceptionBase
 {
     public ValidationException(IEnumerable<ValidationMessage> messages)
-        : base("Validation", true, "Validation")
+        : base("Validation", 400, true, "Validation")
     {
         Messages = messages.ToList().AsReadOnly();
     }
