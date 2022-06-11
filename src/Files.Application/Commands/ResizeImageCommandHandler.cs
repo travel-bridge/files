@@ -20,7 +20,7 @@ public class ResizeImageCommandHandler : IRequestHandler<ResizeImageCommand, Ope
         var originalImageId = Image.CreateOriginalId(command.GroupId);
         var originalImage = await _imageRepository.DownloadAsync(originalImageId, cancellationToken);
         if (originalImage == null)
-            return new OperationResponse { IsSuccess = false };
+            return OperationResponse.NotSuccess;
 
         var images = new List<Image>
         {
@@ -37,6 +37,6 @@ public class ResizeImageCommandHandler : IRequestHandler<ResizeImageCommand, Ope
 
         await _imageRepository.DeleteAsync(originalImage.Id, cancellationToken);
 
-        return new OperationResponse { IsSuccess = true };
+        return OperationResponse.Success;
     }
 }
