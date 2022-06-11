@@ -15,8 +15,6 @@ public class ImageValidator : AbstractValidator<Image>
         "image/tiff",
         "image/webp"
     };
-    
-    private static readonly string[] Location = { "image" };
 
     public ImageValidator()
     {
@@ -27,19 +25,17 @@ public class ImageValidator : AbstractValidator<Image>
         RuleFor(x => x.Id.Key)
             .NotEmpty()
             .WithState(_ => new InvalidRequestMessage("BucketName should not be empty."));
-
-        var contentTypeLocation = new List<string>(Location) { "contentType" };
+        
         RuleFor(x => x.ContentType)
             .Must(x => AllowedContentTypes.Contains(x))
             .WithState(_ => new ValidationMessage(
-                contentTypeLocation,
+                Array.Empty<string>(),
                 "Validation:ImageContentTypeAllowedError"));
         
-        var contentLocation = new List<string>(Location) { "content" };
         RuleFor(x => x.Content)
             .NotEmpty()
             .WithState(_ => new ValidationMessage(
-                contentLocation,
+                Array.Empty<string>(),
                 "Validation:ImageContentNotEmptyError"));
     }
 }

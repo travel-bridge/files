@@ -7,28 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Excursions.Api.Resources {
+namespace Files.Application.Resources {
     using System;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ExcursionResource_en_US {
+    internal class FileResource_en_US {
         
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ExcursionResource_en_US() {
+        internal FileResource_en_US() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Excursions.Application.Resources.ExcursionResource_en_US", typeof(ExcursionResource_en_US).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Files.Application.Resources.FileResource_en_US", typeof(FileResource_en_US).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -45,81 +45,15 @@ namespace Excursions.Api.Resources {
             }
         }
         
-        internal static string Domain_ExcursionUpdateWhenNotDraftError {
+        internal static string Validation_ImageContentTypeAllowedError {
             get {
-                return ResourceManager.GetString("Domain:ExcursionUpdateWhenNotDraftError", resourceCulture);
+                return ResourceManager.GetString("Validation:ImageContentTypeAllowedError", resourceCulture);
             }
         }
         
-        internal static string Domain_ExcursionBookWhenNotPublishedError {
+        internal static string Validation_ImageContentNotEmptyError {
             get {
-                return ResourceManager.GetString("Domain:ExcursionBookWhenNotPublishedError", resourceCulture);
-            }
-        }
-        
-        internal static string Domain_ExcursionBookPlacesCountLimitError {
-            get {
-                return ResourceManager.GetString("Domain:ExcursionBookPlacesCountLimitError", resourceCulture);
-            }
-        }
-        
-        internal static string Domain_BookingApproveWhenNotBookedError {
-            get {
-                return ResourceManager.GetString("Domain:BookingApproveWhenNotBookedError", resourceCulture);
-            }
-        }
-        
-        internal static string Domain_BookingRejectWhenNotBookedError {
-            get {
-                return ResourceManager.GetString("Domain:BookingRejectWhenNotBookedError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionNameNotEmptyError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionNameNotEmptyError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionNameMaximumLengthError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionNameMaximumLengthError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionDescriptionMaximumLengthError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionDescriptionMaximumLengthError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionDateTimeUtcNotDefaultError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionDateTimeUtcNotDefaultError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionPlacesCountGreaterThanError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionPlacesCountGreaterThanError", resourceCulture);
-            }
-        }
-        
-        internal static string Validation_ExcursionPricePerPlaceGreaterThanError {
-            get {
-                return ResourceManager.GetString("Validation:ExcursionPricePerPlaceGreaterThanError", resourceCulture);
-            }
-        }
-        
-        internal static string Domain_ExcursionBookWhenTouristAlreadyBookedError {
-            get {
-                return ResourceManager.GetString("Domain:ExcursionBookWhenTouristAlreadyBookedError", resourceCulture);
-            }
-        }
-        
-        internal static string Domain_ExcursionPublishWhenNotDraftError {
-            get {
-                return ResourceManager.GetString("Domain:ExcursionPublishWhenNotDraftError", resourceCulture);
+                return ResourceManager.GetString("Validation:ImageContentNotEmptyError", resourceCulture);
             }
         }
     }

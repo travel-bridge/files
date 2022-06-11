@@ -12,8 +12,8 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services)
     {
         services.AddMediatR(Assembly.GetExecutingAssembly());
-        services.AddLocalization();
         services.AddSingleton<IImageQueries, ImageQueries>();
+        services.AddLocalization();
         
         return services;
     }

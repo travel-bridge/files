@@ -41,6 +41,8 @@ builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
 if (!builder.Environment.IsDevelopment())
 {
     app.UseHsts();
@@ -56,5 +58,3 @@ app.MapControllers();
 app.MapHealthChecks("/health");
 
 await app.RunAsync();
-
-// TODO: Добавить обработку ошибок и логгирование
