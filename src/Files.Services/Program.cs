@@ -41,6 +41,7 @@ builder.Services.AddControllers();
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+app.UseApplication();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 if (!builder.Environment.IsDevelopment())
@@ -52,7 +53,6 @@ if (!builder.Environment.IsDevelopment())
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseApplication();
 app.UseCors(x=> x.SetIsOriginAllowed(_ => true).AllowCredentials().AllowAnyHeader().AllowAnyMethod());
 app.MapControllers();
 app.MapHealthChecks("/health");
