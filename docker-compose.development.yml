@@ -80,4 +80,5 @@ services:
     environment:
       ConnectionStrings__AuthDatabase: User ID=postgres;Password=postgres;Host=postgres;Port=5432;Database=auth-database;
       Events__BootstrapServers: 127.0.0.1:9092
+      Identity__UseTestUsers: true
       ASPNETCORE_ENVIRONMENT: Development
