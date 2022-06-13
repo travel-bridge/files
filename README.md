@@ -19,3 +19,6 @@
     client_id=36c04531-8d7c-49bf-a94a-260689c16e00
     username=test
     password=test
+
+## Kafdrop UI
+    http://localhost:9000
