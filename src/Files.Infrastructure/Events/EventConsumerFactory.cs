@@ -1,5 +1,5 @@
 using Confluent.Kafka;
-using Files.Application.IntegrationEvents;
+using Files.Application.Events;
 using Microsoft.Extensions.Options;
 
 namespace Files.Infrastructure.Events;

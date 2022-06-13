@@ -1,4 +1,4 @@
-using Files.Application.IntegrationEvents;
+using Files.Application.Events;
 using Files.Domain;
 using Files.Domain.Aggregates;
 using Files.Domain.Aggregates.ImageAggregate;

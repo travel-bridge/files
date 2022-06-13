@@ -1,4 +1,4 @@
-using Files.Application.IntegrationEvents;
+using Files.Application.Events;
 using Files.Application.Responses;
 using Files.Domain.Aggregates.ImageAggregate;
 using MediatR;
@@ -23,7 +23,7 @@ public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand, Upl
         var originalImage = Image.CreateOriginal(command.Name, command.ContentType, command.Content);
         await _imageRepository.UploadAsync(originalImage, cancellationToken);
         await _eventProducer.ProduceAsync(
-            new ResizeImageIntegrationEvent(originalImage.GetGroupId()),
+            new ResizeImageEvent(originalImage.GetGroupId()),
             cancellationToken);
         
         return new UploadImageResponse { GroupId = originalImage.GetGroupId() };

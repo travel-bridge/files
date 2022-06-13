@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using Confluent.Kafka;
-using Files.Application.IntegrationEvents;
+using Files.Application.Events;
 using Microsoft.Extensions.Options;
 
 namespace Files.Infrastructure.Events;
@@ -29,7 +29,7 @@ public class EventProducer : IEventProducer
     public async Task ProduceAsync<TEvent>(
         TEvent @event,
         CancellationToken cancellationToken = default)
-        where TEvent : IIntegrationEvent
+        where TEvent : IEvent
     {
         var json = JsonSerializer.Serialize(@event);
         var message = new Message<Null, string> { Value = json };

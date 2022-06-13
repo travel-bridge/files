@@ -1,5 +1,5 @@
 using Files.Application.Commands;
-using Files.Application.IntegrationEvents;
+using Files.Application.Events;
 using Files.Application.Resources;
 using MediatR;
 using Microsoft.Extensions.Localization;
@@ -38,7 +38,7 @@ public class ResizeImageWorker : WorkerBase
             await ExecuteSafelyAsync(
                 async () =>
                 {
-                    await eventConsumer.ConsumeAndHandleAsync<ResizeImageIntegrationEvent>(
+                    await eventConsumer.ConsumeAndHandleAsync<ResizeImageEvent>(
                         async @event => await mediator.Send(
                             new ResizeImageCommand(@event.GroupId),
                             stoppingToken),

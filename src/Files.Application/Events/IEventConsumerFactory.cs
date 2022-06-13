@@ -1,4 +1,4 @@
-namespace Files.Application.IntegrationEvents;
+namespace Files.Application.Events;
 
 public interface IEventConsumerFactory
 {
